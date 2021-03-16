@@ -1,6 +1,6 @@
 # todo
 it is toDo list project allows you to save lists and what you want to make with beautiful and easy GUI 
-Technology : Node.js (javascript)(backEnd),MongoDB ,Angular (frontEnd)
+Technology : Node.js (javascript)(backEnd),MongoDB ,Angular (frontEnd),css,bulma new css framework
 features:
 1- user can create an account with email and password .
 2- user can login with full authentication and privacy 
