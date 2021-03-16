@@ -1,0 +1,99 @@
+<div class="centered-content">
+    <div class="task-manager-container">
+        <div class="sidebar">
+            <h1 class="title has-list-primary">
+                lists
+            </h1>
+            <div class="list-menu" >
+                <a style="display: flex;flex-direction: column" class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists',list._id]" routerLinkActive="is-active" >
+                    <p>{{list.title}}</p>
+                    <div>
+                      <div class="selected" *ngIf="list?.createdAt !== list?.updatedAt">{{list.updatedAt | date: 'yyyy-MM-dd  h:mm:ss a'}}</div>
+                      <div class="selected" *ngIf="list?.createdAt === list?.updatedAt">{{list.createdAt | date: 'yyyy-MM-dd  h:mm:ss a'}}</div>
+                    </div>
+                </a>
+
+            </div>
+            <button class="button is-primary" routerLink="/new-List">+ New List</button>
+        </div>
+        <div class="todo-list-container has-background-light">
+            <div *ngIf="todos" class="todo-list-container-child">
+                <div class="top-bar" style=" margin-bottom: 20px;
+                display: flex;">
+                    <h1 class="title has-list-primary" style="flex-grow: 1;
+                    margin: 0;">
+                        ToDo
+                    </h1>
+                    <div class="dropdown is-hoverable is-right" >
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" >
+                          
+                            <span class="icon is-small">
+                              <i class="fas fa-cog" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                  <div class="dropdown-content">
+                                    <a  [routerLink]="['/edit-list', selectedListId]" class="dropdown-item">
+                                      Edit
+                                    </a>
+                                    <a class="dropdown-item has-text-danger" (click)="onDeleteListClick()">
+                                      Delete
+                                    </a>
+                                   
+                                  </div>
+                              
+                              
+                        </div>
+                      </div>
+                </div>
+           
+            <div class="scrolldiv">
+
+            <div class="todo" *ngFor="let todo of todos" (click)="onTodoClick(todo)" [ngClass]="{'complete':todo.completed}" >
+                <!-- {{todo.title}}{{todo.createdAt}} -->
+                <div style="display: flex;flex-direction: row;">
+                <div class="todo-text">
+                    <p>{{ todo.title }}</p>
+               
+                  </div>
+
+                  <div class="todo-buttons">
+        
+                    <button class="button" [routerLink]="['/lists', selectedListId, 'edit-todo', todo._id]">
+                      <div class="icon">
+                        <i class="fas fa-edit"></i>
+                      </div>
+                    </button>
+        
+                    <button class="button is-danger" (click)="onTodoDeleteClick(todo._id)" style="margin-left: 10px;">
+                      <div class="icon">
+                        <i class="fas fa-trash"></i>
+                      </div>
+                    </button>
+        
+                  </div>
+                </div>
+                <div style="align-self: flex-end;color: gray; font-size: small;">
+                  <div class="selected" *ngIf="todo?.createdAt !== todos?.updatedAt">{{todo.updatedAt | date: 'yyyy-MM-dd  h:mm:ss a'}}</div>
+                  <div class="selected" *ngIf="todo?.createdAt === todos?.updatedAt">{{todo.createdAt | date: 'yyyy-MM-dd  h:mm:ss a'}}</div>
+                </div>
+                </div>
+            
+        </div>
+           <button class="circle-add-button button is-primary" routerLink="./new-todo">
+               <img src="../../../assets/plus-icon.svg" alt="" routerLink="./new-todo">
+           </button>
+        </div>
+        <div *ngIf="!todos">
+     
+            <h1>
+              <pre>  Please select list from sideBar         <i class="fas fa-times" ></i></pre>
+            </h1>
+            
+        </div>
+        <div class="empty" *ngIf="todos?.length === 0"> <h1>please add to do from button down + </h1></div>
+        </div>
+    </div>
+</div>

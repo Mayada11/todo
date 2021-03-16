@@ -1,0 +1,27 @@
+<p>edit-todo works!</p>
+<div class="centered-content">
+    <div class="modal-box">
+            <h1 class="title">
+                update the List
+            </h1>
+            <input #todoTitleInput class="input has-background-light is-primary " type="text" >
+            <!-- <p class="control">
+                <a class="button is-info">
+                  Search
+                </a>
+              </p> -->
+              <br><br>
+              <div class="buttons">
+                  <button class="button" routerLink = "/lists">cancel</button>
+                  <button class="button is-info"(click)="updateTodo(todoTitleInput.value)" >Save</button>
+              </div>
+            <!-- <div class="field is-grouped">
+                <p class="control is-expanded">
+               
+                </p>
+                
+              </div> -->
+              <!-- <button class="button" style="margin-top: 18px;" routerLink = "/">Go Back</button> -->
+
+    </div>
+</div>
